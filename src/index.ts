@@ -28,6 +28,7 @@ type HassCommandArgs = {
     | 'get_services'
     | 'get_panels'
     | 'get_config'
+    | 'config/device_registry/list'
     | 'media_player_thumbnail'
     | 'camera_thumbnail';
 
@@ -138,6 +139,7 @@ const clientObject = (client: HassClient): HassApi => {
     rawClient: client,
 
     getStates: async () => command({ type: 'get_states' }, client),
+    getDeviceList: async () => command({ type: 'config/device_registry/list' }, client),
     getServices: async () => command({ type: 'get_services' }, client),
     getPanels: async () => command({ type: 'get_panels' }, client),
     getConfig: async () => command({ type: 'get_config' }, client),
