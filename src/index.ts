@@ -41,6 +41,7 @@ export type EventType = string | symbol;
 export type HassApi = {
   rawClient: HassClient;
   getStates: () => Promise<any[]>;
+  getDeviceList: () => Promise<any[]>;
   getServices: () => Promise<any[]>;
   getPanels: () => Promise<any[]>;
   getConfig: () => Promise<{}>;
