@@ -140,7 +140,7 @@ const clientObject = (client: HassClient): HassApi => {
     rawClient: client,
 
     getStates: async () => command({ type: 'get_states' }, client),
-    getDeviceList: async () => command({ type: 'config/device_registry/list' }, client),
+    getDeviceList: async () => command({ type: 'config/device_registry/list',id:1000 }, client),
     getServices: async () => command({ type: 'get_services' }, client),
     getPanels: async () => command({ type: 'get_panels' }, client),
     getConfig: async () => command({ type: 'get_config' }, client),
