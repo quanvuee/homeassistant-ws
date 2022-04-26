@@ -30,6 +30,7 @@ type HassCommandArgs = {
     | 'get_config'
     | 'config/device_registry/list'
     | 'config/entity_registry/list'
+    | 'config/entity_registry/get'
     | 'media_player_thumbnail'
     | 'camera_thumbnail';
 
@@ -44,6 +45,7 @@ export type HassApi = {
   getStates: () => Promise<any[]>;
   getDeviceList: () => Promise<any[]>;
   getEntityList: () => Promise<any[]>;
+  getEntity: () => Promise<any[]>;
   getServices: () => Promise<any[]>;
   getPanels: () => Promise<any[]>;
   getConfig: () => Promise<{}>;
@@ -150,6 +152,9 @@ const clientObject = (client: HassClient): HassApi => {
 
     on: (eventId: EventType, cb: EventListener): void => {
       client.emitter.on(eventId, cb);
+    },
+    async getEntity(entity_id){
+      return command({ type: 'config/entity_registry/get' ,entity_id}, client)
     },
 
     async callService(domain, service, additionalArgs = {}) {
